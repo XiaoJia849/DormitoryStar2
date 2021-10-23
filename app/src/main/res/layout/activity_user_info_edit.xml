@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UserInfoEditActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <com.example.dormitorystar.RoundImageView
+            android:layout_gravity="center"
+            android:src="@drawable/dormitory"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/usericon_bg_circle" />
+
+    </RelativeLayout>
+
+
+<!--    编辑信息栏-->
+    <com.example.dormitorystar.UserItemGroup
+        android:clickable="true"
+        android:onClick="onClick"
+        android:id="@+id/user_nick_name"
+        app:title="@string/nickname"
+        app:edt_content="风怒号"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.example.dormitorystar.UserItemGroup
+        android:clickable="true"
+        android:onClick="onClick"
+        android:id="@+id/user_user_id"
+        app:title="@string/user_id"
+        app:edt_content="41810081"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.example.dormitorystar.UserItemGroup
+        android:clickable="true"
+        android:onClick="onClick"
+        android:id="@+id/user_gender"
+        app:title="@string/gender"
+        app:edt_content="男"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.example.dormitorystar.UserItemGroup
+        android:id="@+id/user_birthday"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:title="@string/birthday"
+        app:edt_content="2000-06-22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.example.dormitorystar.UserItemGroup
+        android:id="@+id/user_school"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:title="@string/school"
+        app:edt_content="西南财经大学"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

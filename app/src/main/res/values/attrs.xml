@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    自定义控件后自定义控件内部-->
+
+
+    <declare-styleable name="ItemGroup">
+        <attr name="title" format="string"/>
+        <attr name="edt_content" format="string"/>
+        <attr name="edt_hint_content" format="string"/>
+
+        <attr name="paddingLeft" format="integer" />
+        <attr name="paddingRight" format="integer" />
+        <attr name="paddingTop" format="integer" />
+        <attr name="paddingBottom" format="integer" />
+        <attr name="title_size" format="integer" />
+        <attr name="edt_text_size" format="integer" />
+
+
+        <attr name="title_color" format="color"/>
+        <attr name="edt_text_color" format="color"/>
+        <attr name="edt_hint_text_color" format="color"/>
+
+        <attr name="isEditable" format="boolean"/>
+        <attr name="jt_visible" format="boolean"/>
+
+
+
+    </declare-styleable>
+
+
+
+        <attr name="compactCalendarEventIndicatorStyle" format="enum">
+            <enum name="fill_large_indicator" value="1" />
+            <enum name="no_fill_large_indicator" value="2" />
+            <enum name="small_indicator" value="3" />
+        </attr>
+        <attr name="compactCalendarCurrentDayIndicatorStyle" format="enum">
+            <enum name="fill_large_indicator" value="1" />
+            <enum name="no_fill_large_indicator" value="2" />
+        </attr>
+        <attr name="compactCalendarCurrentSelectedDayIndicatorStyle" format="enum">
+            <enum name="fill_large_indicator" value="1" />
+            <enum name="no_fill_large_indicator" value="2" />
+        </attr>
+        <declare-styleable name="CompactCalendarView">
+            <attr name="compactCalendarTextSize" format="dimension"/>
+            <attr name="compactCalendarBackgroundColor" format="color"/>
+            <attr name="compactCalendarCurrentDayBackgroundColor" format="color"/>
+            <attr name="compactCalendarCurrentDayTextColor" format="color"/>
+            <attr name="compactCalendarCurrentSelectedDayBackgroundColor" format="color"/>
+            <attr name="compactCalendarCurrentSelectedDayTextColor" format="color"/>
+            <attr name="compactCalendarTextColor" format="color"/>
+            <attr name="compactCalendarMultiEventIndicatorColor" format="color"/>
+            <attr name="compactCalendarTargetHeight" format="dimension"/>
+            <attr name="compactCalendarEventIndicatorStyle"/>
+            <attr name="compactCalendarCurrentDayIndicatorStyle"/>
+            <attr name="compactCalendarCurrentSelectedDayIndicatorStyle"/>
+            <attr name="compactCalendarDisplayOtherMonthDays" format="boolean"/>
+            <attr name="compactCalendarShouldSelectFirstDayOfMonthOnScroll" format="boolean"/>
+            <attr name="compactCalendarOtherMonthDaysTextColor" format="color"/>
+        </declare-styleable>
+
+
+
+
+
+
+
+
+
+</resources>

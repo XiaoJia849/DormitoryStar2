@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">DormitoryStar</string>
+    <string name="nickname">nickname</string>
+    <string name="dormitory_id">dormitory_id</string>
+    <string name="bed_id">bed_id</string>
+    <string name="what_you_need_to_know">what_you_need_to_know</string>
+    <string name="register">register</string>
+    <string name="normal">normal</string>
+    <string name="elect">elect</string>
+    <string name="select_plan">select plan</string>
+    <string name="plan1">plan1</string>
+    <string name="create_one">create_one</string>
+    <string name="commit">commit</string>
+    <string name="make_sure">make_sure</string>
+
+    <string name="zero">&#xe612;</string>
+    <string name="three">&#xe652;</string>
+    <string name="four">&#xea70;</string>
+    <string name="five">&#xe646;</string>
+    <string name="six">&#xe601;</string>
+    <string name="seven">&#xe6a4;</string>
+
+    <string name="zero_fill">&#xec44;</string>
+    <string name="three_fill">&#xe615;</string>
+    <string name="four_fill">&#xea6f;</string>
+    <string name="five_fill">&#xe600;</string>
+    <string name="six_fill">&#xe649;</string>
+    <string name="seven_fill">&#xe6a4;</string>
+    <string name="user_id">user_id</string>
+    <string name="gender">gender</string>
+    <string name="birthday">birthday</string>
+    <string name="school">school</string>
+    <string name="user_pic">user_pic</string>
+
+
+</resources>

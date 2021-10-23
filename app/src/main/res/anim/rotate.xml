@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    从0°转到359°，不可以写360,会发生停顿-->
+<!--    旋转时间为1000毫秒-->
+<!--    repeatMode 重复模式  restart 重投开始  reverse从结束开始向前重新运行-->
+<!--    repeatCount重复次数 -1表示不停止    -->
+<!--    pivotX="50%" 针对这个控件空间内部相应百分比-->
+    <rotate
+        android:duration="10000"
+        android:fromDegrees="0"
+        android:toDegrees="359"
+        android:repeatCount="-1"
+        android:repeatMode="restart"
+        android:pivotX="50%p"
+        android:pivotY="50%p"
+        android:interpolator="@android:anim/overshoot_interpolator"
+        />
+</set>
