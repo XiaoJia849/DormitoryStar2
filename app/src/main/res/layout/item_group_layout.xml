@@ -37,6 +37,7 @@
 
         <!--点击跳转或者弹出选择框-->
         <ImageView
+            android:id="@+id/right"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

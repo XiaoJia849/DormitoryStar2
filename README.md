@@ -148,3 +148,45 @@ UserInfoEdit:
 
 时常因为网速痛苦
 
+git commit add 无法检测到我这个代码变动
+push 返回错误 cant gind git repository
+我用命令行成功Push了
+
+git add *
+git commit -m "init "
+git push -u origin master
+
+Android Studio 的工具无法帮我add commit push 
+不知道为啥，但是就这样吧。想哭
+
+# 2021.10.24
+麻了
+
+今天上午解决了本地服务器与JAVA应用的响应问题，响应方法都写完了，但是
+
+在JAVA项目中一样的命令发送请求到了android竟然行不通，我真的醉了
+
+算了，先把其他问题解决
+
+1. 更新生日
+   用不了  https://github.com/maiconhellmann/heins-input-dialogs
+   这个没办法直接用，我试着修改了一下不成功，不想再试了
+   https://github.com/wdullaer/MaterialDateTimePicker 
+   这个人超贴心，写的特别细，感谢
+   https://github.com/code-troopers/android-betterpickers
+
+2. 更新昵称  学校
+   https://github.com/ayaremin/panter-dialog
+   
+3. 更新性别  男女  寝室长  是否
+   https://github.com/ch-muhammad-adil/Android-Material-Picker-Dialog
+   这个真的太好看了，虽然它放到我的代码里风格不统一
+   但是那又怎样，我一定要用它,该死，不用想了，用不了，可恶
+   https://github.com/ceryle/RadioRealButton
+
+4.  [不重要]时间段的选择器
+   https://github.com/MedAmineTazarki/DateRangePicker
+   
+
+除了时间段现在还不需要,没修改,基本都修改了,逻辑顺了一遍.
+主要是累了,不想做了,明天再继续修改吧

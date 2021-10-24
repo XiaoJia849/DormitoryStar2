@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+
+//根据type进行变动
 public class CalenderActivity extends AppCompatActivity {
 
     public static final String TAG="CalenderActivity";

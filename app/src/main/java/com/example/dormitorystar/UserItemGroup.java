@@ -60,6 +60,21 @@ public class UserItemGroup extends FrameLayout {
     }
 
 
+    public TextView getTitle() {
+        return title;
+    }
+
+    public void setTitle(TextView title) {
+        this.title = title;
+    }
+
+    public TextView getContent() {
+        return content;
+    }
+
+    public void setContent(TextView content) {
+        this.content = content;
+    }
 
     /**
      * 初始化相关属性，引入相关属性
@@ -109,8 +124,6 @@ public class UserItemGroup extends FrameLayout {
 //        contentEdt.setClickable(true);
 //        contentEdt.setKeyListener(null);
         this.rightV.setVisibility(showJtIcon ? View.VISIBLE : View.GONE);  //设置向右的箭头图标是否可见
-
-
 
 
     }

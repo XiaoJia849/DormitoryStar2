@@ -1,15 +1,17 @@
 package com.example.dormitorystar;
 
+import org.litepal.crud.LitePalSupport;
+
 import java.util.Date;
 
-public class User {
-    String nickname,bed_id,dormitory_id,user_id;
+public class User extends LitePalSupport {
+    String nickname,dormitory_id,user_id;
     String school;
     Date birthday;
     boolean gender;
     String user_pic;
-    int type=1;
-    boolean leader=false;
+    int type,bed_id;
+    boolean leader;
 
     public int getType() {
         return type;
@@ -27,7 +29,7 @@ public class User {
         this.leader = leader;
     }
 
-    public User(String nickname, String bed_id, String dormitory_id, String user_id) {
+    public User(String nickname, int bed_id, String dormitory_id, String user_id) {
         this.nickname = nickname;
         this.bed_id = bed_id;
         this.dormitory_id = dormitory_id;
@@ -82,11 +84,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public String getBed_id() {
+    public int getBed_id() {
         return bed_id;
     }
 
-    public void setBed_id(String bed_id) {
+    public void setBed_id(int bed_id) {
         this.bed_id = bed_id;
     }
 

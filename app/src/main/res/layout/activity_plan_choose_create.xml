@@ -12,12 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+
+<RadioGroup
+    android:id="@+id/radioGroup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 <!--    轮流间隔?天-->
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <RadioButton
+            android:id="@+id/plan1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -34,16 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="按床位轮流间隔"
+                    android:text="默认周一1号床,周三2号床,周五3号床,周末4号床"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:text="天打扫卫生"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+
 
             </LinearLayout>
         </LinearLayout>
@@ -55,6 +59,7 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <RadioButton
+            android:id="@+id/plan2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -70,11 +75,31 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="开始日期"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:text="今天"
+                    android:id="@+id/startDate"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <TextView
                     android:text="按床位轮流间隔"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:id="@+id/date_between"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -85,15 +110,17 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
+</RadioGroup>
 <!--    自定义方案-->
     <Button
+        android:onClick="onClick"
         android:id="@+id/create_one"
         android:text="@string/create_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
+        android:onClick="onClick"
         android:id="@+id/make_sure"
         android:text="@string/make_sure"
         android:layout_width="match_parent"

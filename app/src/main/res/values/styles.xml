@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    时间选择的颜色-->
+    <style name="MyCustomBetterPickersDialogs" parent="BetterPickersRadialTimePickerDialog.PrimaryColor">
+        <item name="bpPreHeaderBackgroundColor">@color/darkblue</item>
+        <item name="bpHeaderBackgroundColor">@color/red</item>
+        <item name="bpHeaderSelectedTextColor">@color/darkblue</item>
+        <item name="bpHeaderUnselectedTextColor">@android:color/white</item>
+
+        <item name="bpBodyBackgroundColor">@color/darkblue</item>
+        <item name="bpBodySelectedTextColor">@color/darkcyan</item>
+        <item name="bpBodyUnselectedTextColor">@android:color/white</item>
+
+        <item name="bpRadialBackgroundColor">@color/darkcyan</item>
+        <item name="bpRadialTextColor">@color/darkgreen</item>
+        <item name="bpRadialPointerColor">@android:color/black</item>
+
+        <item name="bpButtonsBackgroundColor">@color/darkcyan</item>
+        <item name="bpButtonsTextColor">@color/white</item>
+    </style>
+</resources>

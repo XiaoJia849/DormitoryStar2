@@ -29,7 +29,7 @@
     </RelativeLayout>
 
 
-<!--    编辑信息栏-->
+    <!--    编辑信息栏-->
     <com.example.dormitorystar.UserItemGroup
         android:clickable="true"
         android:onClick="onClick"
@@ -74,6 +74,25 @@
         app:edt_content="西南财经大学"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <com.example.dormitorystar.UserItemGroup
+        android:id="@+id/user_leader"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:title="@string/leader"
+        app:edt_content="否"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.example.dormitorystar.UserItemGroup
+        android:id="@+id/user_type"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:title="@string/type"
+        app:edt_content="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 
 
