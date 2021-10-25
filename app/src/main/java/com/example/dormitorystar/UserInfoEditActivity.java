@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
 import com.eminayar.panter.DialogType;
 import com.eminayar.panter.PanterDialog;
 import com.eminayar.panter.interfaces.OnTextInputConfirmListener;
+import com.gigamole.navigationtabstrip.NavigationTabStrip;
 
 import adil.dev.lib.materialnumberpicker.dialog.GenderPickerDialog;
 
@@ -28,12 +30,65 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
 
     private static final String FRAG_TAG_DATE_PICKER = "fragment_date_picker_name";
 
+    NavigationTabStrip navigationTabStrip ;
+
+
+    protected void initNavi(){
+        navigationTabStrip= findViewById(R.id.navi_user);
+        Log.d(TAG, "initNavi: hh");
+        navigationTabStrip.setTitles(getResources().getString(R.string.calendar), getResources().getString(R.string.user));
+        navigationTabStrip.setTabIndex(1, true);
+        navigationTabStrip.setTitleSize(100);
+//        横线的颜色
+        navigationTabStrip.setStripColor(Color.RED);
+        navigationTabStrip.setStripWeight(6);
+        navigationTabStrip.setStripFactor(2);
+        navigationTabStrip.setStripType(NavigationTabStrip.StripType.LINE);
+        navigationTabStrip.setStripGravity(NavigationTabStrip.StripGravity.BOTTOM);
+//        到assets去找,但是肯定还有其他的设置，我现在没看到效果
+        navigationTabStrip.setTypeface("iconfont2.ttf");
+        navigationTabStrip.setCornersRadius(3);
+        navigationTabStrip.setAnimationDuration(300);
+        navigationTabStrip.setInactiveColor(Color.GRAY);
+        navigationTabStrip.setActiveColor(Color.CYAN);
+//        navigationTabStrip.setOnPageChangeListener(...);
+
+//        这个在点击tab才有用
+        navigationTabStrip.setOnTabStripSelectedIndexListener(new NavigationTabStrip.OnTabStripSelectedIndexListener() {
+            @Override
+            public void onStartTabSelected(String title, int index) {
+                Log.d(TAG, "onStartTabSelected: ");
+            }
+
+            @Override
+            public void onEndTabSelected(String title, int index) {
+//index 就是页码
+                if(index==0){
+//                    跳转到calendar页面
+                    Intent intent=new Intent(UserInfoEditActivity.this,CalenderActivity.class);
+                    startActivity(intent);
+
+
+                }
+
+            }
+        });
+
+    }
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_edit);
         initView();
+
+        initNavi();
 
     }
 //    初始化参数

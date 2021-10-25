@@ -190,3 +190,16 @@ Android Studio 的工具无法帮我add commit push
 
 除了时间段现在还不需要,没修改,基本都修改了,逻辑顺了一遍.
 主要是累了,不想做了,明天再继续修改吧
+
+看到了一个特别适合的navi
+https://github.com/Devlight/NavigationTabStrip
+有点小问题，就是type 真烦啊
+
+
+# 2021.10.25
+
+把calendar的两种模式确定了。
+
+现在就差数据了，基本上
+
+哎，好难受

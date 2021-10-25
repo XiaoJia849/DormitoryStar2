@@ -35,6 +35,9 @@
     <string name="type">type</string>
 
 
+    <string name="calendar">&#xe6bf;</string>
+    <string name="user">&#xe7ae;</string>
+
     <!--    重写性别选择器的文字提示-->
 
     <string name="MPD_action_done">done</string>

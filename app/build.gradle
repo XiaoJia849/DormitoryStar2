@@ -42,7 +42,8 @@ dependencies {
 //    输入
     implementation 'com.eminayar.panterdialog:panter-dialog:0.0.2.1'
 
-//    选择是否为leader
+//      navig
+    implementation 'com.github.devlight.navigationtabstrip:navigationtabstrip:1.0.4'
 
 
 
