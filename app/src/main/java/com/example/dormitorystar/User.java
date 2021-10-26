@@ -7,7 +7,7 @@ import java.util.Date;
 public class User extends LitePalSupport {
     String nickname,dormitory_id,user_id;
     String school;
-    Date birthday;
+    String birthday;
     boolean gender;
     String user_pic;
     int type,bed_id;
@@ -44,11 +44,11 @@ public class User extends LitePalSupport {
         this.school = school;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

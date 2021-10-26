@@ -21,6 +21,8 @@ import com.eminayar.panter.PanterDialog;
 import com.eminayar.panter.interfaces.OnTextInputConfirmListener;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 
+import org.json.JSONObject;
+
 import adil.dev.lib.materialnumberpicker.dialog.GenderPickerDialog;
 
 public class UserInfoEditActivity extends AppCompatActivity implements  View.OnClickListener , CalendarDatePickerDialogFragment.OnDateSetListener {
@@ -106,8 +108,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
 
 //    需要补充点击图片更换头像
 
-
-//    还需要修改服务器数据
 
 
 //    点击展示dialog进行选择
@@ -202,10 +202,14 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                     .show();
         }
         if(view.getId()==R.id.user_type){
+//            检查用户是否为寝室长，是才跳转
+            SharedPreferences sharedPreferences=getSharedPreferences("User",Activity.MODE_PRIVATE);
+            Boolean leader= sharedPreferences.getBoolean("leader",false);
+            if(leader){
 //            跳转到PlanChoose Activity
-            Intent intent=new Intent(UserInfoEditActivity.this,PlanChooseCreateActivity.class);
-            startActivity(intent);
-
+                Intent intent=new Intent(UserInfoEditActivity.this,PlanChooseCreateActivity.class);
+                startActivity(intent);
+            }
         }
     }
 
@@ -239,5 +243,16 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         editor.putBoolean(name,value);
         editor.apply();
     }
+
+
+//    修改服务器数据,因为访问服务器获取资源现在代码有问题，所以这里就只写注释
+    String url="http://192.168.43.123:8081/JSONUpdate/dataChange.jsp";
+    protected void changeData(String url, JSONObject jsonObject){
+
+
+
+    }
+
+
 
 }

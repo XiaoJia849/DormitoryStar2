@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
 
+import org.json.JSONObject;
+
 public class PlanChooseCreateActivity extends AppCompatActivity implements View.OnClickListener, CalendarDatePickerDialogFragment.OnDateSetListener {
 
     RadioGroup radioGroup;
@@ -59,6 +61,11 @@ public class PlanChooseCreateActivity extends AppCompatActivity implements View.
 
                     String date_start=editText.getText().toString();
                     int date_bw_int=Integer.valueOf(date_between.getText().toString());
+
+//                    检查
+//                    将数据上传到服务器
+
+
                 }
 
             }
@@ -70,7 +77,7 @@ public class PlanChooseCreateActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         if(v.getId()==R.id.create_one){
 //            创建一个新的计划
-
+            Toast.makeText(PlanChooseCreateActivity.this,"敬请期待",Toast.LENGTH_LONG).show();
         }
 
         if(v.getId()==R.id.make_sure){
@@ -87,9 +94,6 @@ public class PlanChooseCreateActivity extends AppCompatActivity implements View.
 //            跳转到日历
             Intent intent=new Intent(PlanChooseCreateActivity.this,CalenderActivity.class);
             startActivity(intent);
-
-
-
         }
     }
 
@@ -108,4 +112,14 @@ public class PlanChooseCreateActivity extends AppCompatActivity implements View.
         String day=dayOfMonth<10?"0"+dayOfMonth:""+dayOfMonth;
         editText.setText(""+year+"-"+month+"-"+day);
     }
+
+    //    修改服务器数据,因为访问服务器获取资源现在代码有问题，所以这里就只写注释
+    String url="http://192.168.43.123:8081/JSONUpdate/dataChange.jsp";
+    protected void changeData(String url, JSONObject jsonObject){
+
+
+    }
+
+
+
 }

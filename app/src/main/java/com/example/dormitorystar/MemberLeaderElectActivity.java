@@ -19,6 +19,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.PathInterpolator;
 import android.widget.ImageView;
 
+
+// 这个我确实没有能力做好，我先不做
 public class MemberLeaderElectActivity extends AppCompatActivity {
     ImageView imageView;
     ImageView imageView1;
