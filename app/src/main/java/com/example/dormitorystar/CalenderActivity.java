@@ -82,7 +82,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         navigationTabStrip.setTitles(getResources().getString(R.string.calendar), getResources().getString(R.string.user));
         navigationTabStrip.setTabIndex(0, true);
         navigationTabStrip.setTitleSize(100);
-        navigationTabStrip.setStripColor(Color.RED);
+        navigationTabStrip.setStripColor(getResources().getColor(R.color.royalblue));
         navigationTabStrip.setStripWeight(6);
         navigationTabStrip.setStripFactor(2);
         navigationTabStrip.setStripType(NavigationTabStrip.StripType.LINE);
@@ -91,7 +91,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         navigationTabStrip.setCornersRadius(3);
         navigationTabStrip.setAnimationDuration(300);
         navigationTabStrip.setInactiveColor(Color.GRAY);
-        navigationTabStrip.setActiveColor(Color.CYAN);
+        navigationTabStrip.setActiveColor(getResources().getColor(R.color.cornflowerblue));
 //        navigationTabStrip.setOnPageChangeListener(...);
 
         navigationTabStrip.setOnTabStripSelectedIndexListener(new NavigationTabStrip.OnTabStripSelectedIndexListener() {
@@ -135,7 +135,6 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
 
         Typeface font = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
 
-
         zeroIcon.setTypeface(font);
         zeroIcon.setText(getResources().getString(R.string.zero));
 
@@ -147,6 +146,9 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
 
         fiveIcon.setTypeface(font);
         fiveIcon.setText(getResources().getString(R.string.five));
+
+
+
 
         for(User user:users){
             switch (user.getBed_id()){
@@ -240,7 +242,8 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
 
         compactCalendarView.invalidate();
 
-        logEventsByMonth(compactCalendarView);
+
+
 
     }
 
@@ -360,25 +363,6 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
     }
-
-    private void logEventsByMonth(CompactCalendarView compactCalendarView) {
-        currentCalender.setTime(new Date());
-        currentCalender.set(Calendar.DAY_OF_MONTH, 1);
-        currentCalender.set(Calendar.MONTH, Calendar.AUGUST);
-        List<String> dates = new ArrayList<>();
-        Locale locale = Locale.FRANCE;
-        dateFormatForDisplaying = new SimpleDateFormat("dd-M-yyyy hh:mm:ss a", locale);
-        TimeZone timeZone = TimeZone.getTimeZone("Europe/Paris");
-        dateFormatForDisplaying.setTimeZone(timeZone);
-
-        for (Event e : compactCalendarView.getEventsForMonth(new Date())) {
-            dates.add(dateFormatForDisplaying.format(e.getTimeInMillis()));
-        }
-        Log.d(TAG, "Events for Aug with simple date formatter: " + dates);
-        Log.d(TAG, "Events for Aug month using default local and timezone: " + compactCalendarView.getEventsForMonth(currentCalender.getTime()));
-    }
-
-
 
 
 

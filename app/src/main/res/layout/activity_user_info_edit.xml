@@ -24,6 +24,7 @@
         app:nts_inactive_color="#c4c4c4"/>
 
     <RelativeLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">

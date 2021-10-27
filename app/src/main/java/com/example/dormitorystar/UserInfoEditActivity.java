@@ -35,22 +35,25 @@ import adil.dev.lib.materialnumberpicker.dialog.GenderPickerDialog;
 public class UserInfoEditActivity extends AppCompatActivity implements  View.OnClickListener , CalendarDatePickerDialogFragment.OnDateSetListener {
     public static final String TAG="UserInfoEditActivity";
     com.example.dormitorystar.UserItemGroup user_nick_name,user_gender,user_birthday;
-    com.example.dormitorystar.UserItemGroup user_school,user_leader,user_type;
+    com.example.dormitorystar.UserItemGroup user_school,user_leader,user_type,user_id;
 
     private static final String FRAG_TAG_DATE_PICKER = "fragment_date_picker_name";
 
+    public static final int UPDATE_ONE_VALUE=4;
+
     NavigationTabStrip navigationTabStrip ;
     Handler handler;
+    String Str_user_id="";
 
 
     protected void initNavi(){
         navigationTabStrip= findViewById(R.id.navi_user);
-        Log.d(TAG, "initNavi: hh");
+
         navigationTabStrip.setTitles(getResources().getString(R.string.calendar), getResources().getString(R.string.user));
         navigationTabStrip.setTabIndex(1, true);
         navigationTabStrip.setTitleSize(100);
 //        横线的颜色
-        navigationTabStrip.setStripColor(Color.RED);
+        navigationTabStrip.setStripColor(getResources().getColor(R.color.royalblue));
         navigationTabStrip.setStripWeight(6);
         navigationTabStrip.setStripFactor(2);
         navigationTabStrip.setStripType(NavigationTabStrip.StripType.LINE);
@@ -60,7 +63,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         navigationTabStrip.setCornersRadius(3);
         navigationTabStrip.setAnimationDuration(300);
         navigationTabStrip.setInactiveColor(Color.GRAY);
-        navigationTabStrip.setActiveColor(Color.CYAN);
+        navigationTabStrip.setActiveColor(getResources().getColor(R.color.cornflowerblue));
 //        navigationTabStrip.setOnPageChangeListener(...);
 
 //        这个在点击tab才有用
@@ -78,18 +81,10 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                     Intent intent=new Intent(UserInfoEditActivity.this,CalenderActivity.class);
                     startActivity(intent);
 
-
                 }
-
             }
         });
-
     }
-
-
-
-
-
 
 
     @Override
@@ -97,10 +92,15 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         handler=new Handler(Looper.myLooper()){
             @Override
             public void handleMessage(@NonNull Message msg) {
+                switch (msg.what){
+                    case UPDATE_ONE_VALUE:
+                        String str= (String) msg.obj;
+                        Toast.makeText(UserInfoEditActivity.this,str,Toast.LENGTH_LONG).show();
+
+                        break;
 
 
-
-
+                }
 
             }
         };
@@ -112,16 +112,53 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         initNavi();
 
     }
+
 //    初始化参数
     protected void initView(){
+        SharedPreferences sharedPreferences=getSharedPreferences("User",Activity.MODE_PRIVATE);
+        String Str_birthday=sharedPreferences.getString("birthday","");
+        String Str_school=sharedPreferences.getString("school","");
+        String Str_nickname=sharedPreferences.getString("nickname","");
+        Str_user_id=sharedPreferences.getString("user_id","");
+        Boolean bool_leader=sharedPreferences.getBoolean("leader",false);
+        Boolean bool_gender=sharedPreferences.getBoolean("gender",true);
+        int int_type=sharedPreferences.getInt("type",1);
+
+
+
         user_birthday=findViewById(R.id.user_birthday);
-        user_gender=findViewById(R.id.user_gender);
         user_school=findViewById(R.id.user_school);
-        user_leader=findViewById(R.id.user_leader);
-        user_type=findViewById(R.id.user_type);
         user_nick_name=findViewById(R.id.user_nick_name);
+        user_id=findViewById(R.id.user_user_id);
+
+        user_gender=findViewById(R.id.user_gender);
+        user_leader=findViewById(R.id.user_leader);
+
+        user_type=findViewById(R.id.user_type);
+
+        initIntem(user_birthday,Str_birthday);
+        initIntem(user_school,Str_school);
+        initIntem(user_nick_name,Str_nickname);
+        initIntem(user_id,Str_user_id);
+        initIntem(user_gender,bool_gender);
+        initIntem(user_leader,bool_leader);
+        initIntem(user_type,int_type);
     }
 
+
+    protected void initIntem(com.example.dormitorystar.UserItemGroup itemGroup,Object obj){
+        TextView textView=itemGroup.getContent();
+        textView.setText(""+obj);
+        itemGroup.setContent(textView);
+    }
+
+
+    protected void sendUpdateOneValue(String name,String value,String type,String user_id){
+        UpdateOneValueTask updateOneValueTask=new UpdateOneValueTask(name,value,type,user_id);
+        updateOneValueTask.setHandler(handler);
+        Thread thread=new Thread(updateOneValueTask);
+        thread.start();
+    }
 
 
 
@@ -133,12 +170,13 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
     public void onClick(View view) {
         if(view.getId()==R.id.user_nick_name){
             new PanterDialog(this)
-                    .setHeaderBackground(R.color.purple_500)
+                    .setHeaderBackground(R.drawable.pattern_bg_blue)
                     .setDialogType(DialogType.INPUT)
-                    .setTitle("Nick Name Edit")
-                    .isCancelable(false)
-                    .input("input a new Nick name",
-                            "ERROR MESSAGE IF USER PUT EMPTY INPUT", new
+                    .setTitle(getResources().getString(R.string.nicknameEdit))
+                    .isCancelable(true)
+                    .setPositive(getResources().getString(R.string.ok))
+                    .input(getResources().getString(R.string.nicknameEditInfo),
+                            getResources().getString(R.string.nicknameEditError), new
                                     OnTextInputConfirmListener() {
                                         @Override
                                         public void onTextInputConfirmed(String text) {
@@ -147,7 +185,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                                             user_nick_name.setContent(textView);
 
                                             ChangeSpString("nickname",text);
-                                            UpdateOneValueTask updateOneValueTask=new UpdateOneValueTask("nickname",text,"");
+
+                                            sendUpdateOneValue("nickname",text,"String",Str_user_id);
 
                                         }
                                     })
@@ -160,14 +199,19 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
             dialog.setOnSelectingGender(new GenderPickerDialog.OnGenderSelectListener() {
                 @Override
                 public void onSelectingGender(String value) {
-                    if(!value.equals("Male")){
+                    if(!value.equals(getResources().getString(R.string.MPD_male))){
                         TextView textView=user_gender.getContent();
-                        textView.setText("女");
+                        textView.setText(getResources().getString(R.string.MPD_female));
                         user_gender.setContent(textView);
 
                         ChangeSpBool("gender",true);
+
+                        sendUpdateOneValue("gender","true","Boolean",Str_user_id);
+
                     }else {
                         ChangeSpBool("gender",false);
+
+                        sendUpdateOneValue("gender","false","Boolean",Str_user_id);
                     }
                 }
             });
@@ -183,12 +227,12 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         }
         if(view.getId()==R.id.user_school){
             new PanterDialog(this)
-                    .setHeaderBackground(R.color.purple_500)
+                    .setHeaderBackground(R.drawable.pattern_bg_blue)
                     .setDialogType(DialogType.INPUT)
-                    .setTitle("School Edit")
+                    .setTitle(getResources().getString(R.string.SchoolEdit))
                     .isCancelable(false)
-                    .input("input School name",
-                            "ERROR MESSAGE IF USER PUT EMPTY INPUT", new
+                    .input(getResources().getString(R.string.SchoolEditInfo),
+                            getResources().getString(R.string.SchoolEditError), new
                                     OnTextInputConfirmListener() {
                                         @Override
                                         public void onTextInputConfirmed(String text) {
@@ -197,6 +241,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                                             user_school.setContent(textView);
 
                                             ChangeSpString("school",text);
+
+                                            sendUpdateOneValue("school",text,"String",Str_user_id);
+
                                         }
                                     })
                     .show();
@@ -204,21 +251,25 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         }
         if(view.getId()==R.id.user_leader){
             new PanterDialog(this)
-                    .setHeaderBackground(R.color.purple_500)
-                    .setPositive("Yes", new View.OnClickListener() {
+                    .setHeaderBackground(R.drawable.pattern_bg_blue)
+                    .setPositive(getResources().getString(R.string.yes), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
                             ChangeSpBool("leader",true);
+                            sendUpdateOneValue("leader","true","Boolean",Str_user_id);
+
                         }
                     })// You can pass also View.OnClickListener as second param
-                    .setNegative("No", new View.OnClickListener() {
+                    .setNegative(getResources().getString(R.string.no), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             ChangeSpBool("leader",false);
+                            sendUpdateOneValue("leader","true","Boolean",Str_user_id);
+
                         }
                     })
-                    .setMessage("Are you a leader?")
+                    .setMessage(getResources().getString(R.string.LeaderInfo))
                     .isCancelable(true)
                     .show();
         }
@@ -246,6 +297,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         user_birthday.setContent(textView);
 
         ChangeSpString("birthday",""+year+"-"+month+"-"+day);
+        sendUpdateOneValue("birthday",""+year+"-"+month+"-"+day,"String",Str_user_id);
 
     }
 

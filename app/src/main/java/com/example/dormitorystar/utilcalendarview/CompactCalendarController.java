@@ -907,7 +907,7 @@ public class CompactCalendarController {
                     drawZero(canvas,xPosition,yPosition);
                     break;
                 case 2:
-                    dayPaint.setColor(Color.argb(128,255,255,0));
+                    dayPaint.setColor(Color.argb(128,255,215,0));
                     drawThree(canvas,xPosition,yPosition);
                     break;
                 case 3:
@@ -915,7 +915,7 @@ public class CompactCalendarController {
                     drawFour(canvas,xPosition,yPosition);
                     break;
                 case 4:
-                    dayPaint.setColor(Color.argb(128,0,255,0));
+                    dayPaint.setColor(Color.argb(128,0,128,0));
                     drawFive(canvas,xPosition,yPosition);
                     break;
             }
@@ -946,6 +946,31 @@ public class CompactCalendarController {
         float[] floats = new float[]{xA, yA,  xD, yD,xB, yB, xE, yE, xC, yC,xA, yA};
         return floats;
     }
+
+
+//第二种五角星
+    public  float[] fivePoints2(float xA, float yA, int rFive,int RFive) {
+        float xB = 0;
+        float xC = 0;
+        float xD = 0;
+        float xE = 0;
+        float yB = 0;
+        float yC = 0;
+        float yD = 0;
+        float yE = 0;
+        xD = (float) (xA - rFive * Math.sin(Math.toRadians(18)));
+        xC = (float) (xA + rFive * Math.sin(Math.toRadians(18)));
+        yD = yC = (float) (yA + Math.cos(Math.toRadians(18)) * rFive);
+        yB = yE = (float) (yA + Math.sqrt(Math.pow((xC - xD), 2) - Math.pow((rFive / 2), 2)));
+        xB = xA + (rFive / 2);
+        xE = xA - (rFive / 2);
+        float[] floats = new float[]{xA, yA,  xD, yD,xB, yB, xE, yE, xC, yC,xA, yA};
+        return floats;
+    }
+
+
+
+
 
 
     private void drawSingleEvent(Canvas canvas, float xPosition, float yPosition, List<Event> eventsList) {

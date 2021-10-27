@@ -36,16 +36,13 @@ public class UpdateOneValueTask implements Runnable{
         OkHttpClient client=new OkHttpClient();
         String url1=url+"?name="+name+"&value="+value+"&type="+type+"&user_id="+user_id;
         Request request=new Request.Builder().get().url(url1).addHeader("Content-Type", "application/json; charset=gb2312").build();
-        String user_id="";
         try {
             Response response=client.newCall(request).execute();
             if(response.isSuccessful()){
-                user_id = new String(response.body().bytes(), "gb2312");
-                Log.d(TAG, "run: 成功了");
+                Message message=handler.obtainMessage(4);
+                message.obj="更新"+name+"成功了";
+                handler.sendMessage(message);
             }
-            Message message=handler.obtainMessage(4);
-            message.obj="更新"+name+"成功了";
-            handler.sendMessage(message);
 
         } catch (IOException e) {
             Log.d(TAG, "run: 更新失败信息");

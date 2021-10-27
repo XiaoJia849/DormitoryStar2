@@ -26,18 +26,19 @@
 
     <!--    这个之后可以改成giridview 看效果，不好就改-->
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
                 style="@style/text_alibaba_calendar"
                 android:id="@+id/zeroIcon"
-                android:textSize="36sp"
                 android:textColor="@color/red"
                 android:layout_width="wrap_content"
                 android:text="@string/zero"
@@ -52,14 +53,15 @@
 
 
         <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
                 style="@style/text_alibaba_calendar"
                 android:id="@+id/threeIcon"
-                android:textSize="36sp"
-                android:textColor="@color/yellow"
+                android:textColor="@color/gold"
                 android:layout_width="wrap_content"
                 android:text="@string/three"
                 android:layout_height="wrap_content"/>
@@ -71,14 +73,23 @@
 
         </LinearLayout>
 
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
                 style="@style/text_alibaba_calendar"
                 android:id="@+id/fourIcon"
-                android:textSize="36sp"
                 android:textColor="@color/blue"
                 android:layout_width="wrap_content"
                 android:text="@string/four"
@@ -92,13 +103,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="left"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
                 style="@style/text_alibaba_calendar"
                 android:id="@+id/fiveIcon"
-                android:textSize="36sp"
                 android:textColor="@color/green"
                 android:layout_width="wrap_content"
                 android:text="@string/five"
@@ -112,6 +123,8 @@
         </LinearLayout>
 
 
+
+
     </LinearLayout>
 
     <com.example.dormitorystar.utilcalendarview.CompactCalendarView
@@ -121,10 +134,10 @@
         android:layout_height="250dp"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="@color/pink"
+        app:compactCalendarBackgroundColor="@color/white"
         app:compactCalendarTextColor="@color/black"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#ffbd5f5f"
-        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/cornflowerblue"
+        app:compactCalendarCurrentDayBackgroundColor="@color/lightskyblue"
         app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
         app:compactCalendarEventIndicatorStyle="small_indicator"
         app:compactCalendarOtherMonthDaysTextColor="#534c4c"

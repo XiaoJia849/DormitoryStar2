@@ -47,6 +47,7 @@ public class SendUserDataTask implements Runnable{
             Response response=client.newCall(request).execute();
             if(response.isSuccessful()){
                 user_id = new String(response.body().bytes(), "gb2312");
+                user_id=user_id.trim();
                 Log.d(TAG, "run: 成功了");
             }
             Message message=handler.obtainMessage(3);

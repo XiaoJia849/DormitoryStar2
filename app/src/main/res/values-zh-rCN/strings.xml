@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DormitoryStar</string>
+    <string name="nickname">昵称</string>
+    <string name="bed_id">床位号</string>
+    <string name="what_you_need_to_know">同意《用户手则》</string>
+    <string name="register">注册</string>
+    <string name="gender">性别</string>
+    <string name="birthday">生日</string>
+    <string name="school">学校</string>
+    <string name="leader">寝室长</string>
+    <string name="type">计划</string>
+    <string name="MPD_male">男</string>
+    <string name="MPD_female">女</string>
+    <string name="user_id">ID</string>
+    <string name="dormitory_id">寝室号</string>
+    <string name="nicknameEdit">编辑昵称</string>
+    <string name="nicknameEditInfo">请输入新的昵称</string>
+    <string name="nicknameEditError">输入为空值</string>
+    <string name="ok">确认</string>
+    <string name="SchoolEdit">编辑学校</string>
+    <string name="SchoolEditInfo">请输入学校名称</string>
+    <string name="SchoolEditError">输入为空值</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="LeaderInfo">请问你是寝室长吗？</string>
+</resources>

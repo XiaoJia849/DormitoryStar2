@@ -1,75 +1,85 @@
 <resources>
     <string name="app_name">DormitoryStar</string>
     <string name="nickname">nickname</string>
-    <string name="dormitory_id">dormitory_id</string>
     <string name="bed_id">bed_id</string>
     <string name="what_you_need_to_know">what_you_need_to_know</string>
     <string name="register">register</string>
-    <string name="normal">normal</string>
-    <string name="elect">elect</string>
-    <string name="select_plan">select plan</string>
-    <string name="plan1">plan1</string>
-    <string name="create_one">create_one</string>
-    <string name="commit">commit</string>
-    <string name="make_sure">make_sure</string>
+    <string name="normal" translatable="false">normal</string>
+    <string name="elect" translatable="false">elect</string>
+    <string name="select_plan" translatable="false">select plan</string>
+    <string name="plan1" translatable="false">plan1</string>
+    <string name="create_one" translatable="false">create_one</string>
+    <string name="commit" translatable="false">commit</string>
+    <string name="make_sure" translatable="false">make_sure</string>
 
-    <string name="zero">&#xe612;</string>
-    <string name="three">&#xe652;</string>
-    <string name="four">&#xea70;</string>
-    <string name="five">&#xe646;</string>
-    <string name="six">&#xe601;</string>
-    <string name="seven">&#xe6a4;</string>
+    <string name="zero" translatable="false">&#xe612;</string>
+    <string name="three" translatable="false">&#xe652;</string>
+    <string name="four" translatable="false">&#xea70;</string>
+    <string name="five" translatable="false">&#xe646;</string>
+    <string name="six" translatable="false">&#xe601;</string>
+    <string name="seven" translatable="false">&#xe6a4;</string>
 
-    <string name="zero_fill">&#xec44;</string>
-    <string name="three_fill">&#xe615;</string>
-    <string name="four_fill">&#xea6f;</string>
-    <string name="five_fill">&#xe600;</string>
-    <string name="six_fill">&#xe649;</string>
-    <string name="seven_fill">&#xe6a4;</string>
+    <string name="zero_fill" translatable="false">&#xec44;</string>
+    <string name="three_fill" translatable="false">&#xe615;</string>
+    <string name="four_fill" translatable="false">&#xea6f;</string>
+    <string name="five_fill" translatable="false">&#xe600;</string>
+    <string name="six_fill" translatable="false">&#xe649;</string>
+    <string name="seven_fill" translatable="false">&#xe6a4;</string>
     <string name="user_id">user_id</string>
     <string name="gender">gender</string>
     <string name="birthday">birthday</string>
     <string name="school">school</string>
-    <string name="user_pic">user_pic</string>
+    <string name="user_pic" translatable="false">user_pic</string>
     <string name="leader">leader</string>
     <string name="type">type</string>
 
 
-    <string name="calendar">&#xe6bf;</string>
-    <string name="user">&#xe7ae;</string>
+    <string name="calendar" translatable="false">&#xe6bf;</string>
+    <string name="user" translatable="false">&#xe7ae;</string>
 
     <!--    重写性别选择器的文字提示-->
 
-    <string name="MPD_action_done">done</string>
-    <string name="MPD_action_cancel">cancel</string>
+    <string name="MPD_action_done" translatable="false">done</string>
+    <string name="MPD_action_cancel" translatable="false">cancel</string>
     <string name="MPD_male">Male</string>
     <string name="MPD_female">Female</string>
-    <string name="MPD_empty_message">value can not be empty</string>
-    <string name="MPD_incorrect_message">please select correct value</string>
+    <string name="MPD_empty_message" translatable="false">value can not be empty</string>
+    <string name="MPD_incorrect_message" translatable="false">please select correct value</string>
 
 
 
 <!--    时间选择器-->
-    <string name="no_value">--</string>
-    <string name="calendar_date_picker_set">Set Date</string>
-    <string name="calendar_date_picker_result_values">Year: %1$s\nMonth: %2$s\nDay: %3$s</string>
-    <string name="radial_time_picker">Set Time</string>
-    <string name="radial_time_picker_result_value">%1$d:%2$d</string>
-    <string name="date_picker_set">Set Date</string>
-    <string name="date_picker_result_value">Year: %1$s\nMonth: %2$s\nDay: %3$s</string>
-    <string name="expiration_picker_set">Set Expiration</string>
-    <string name="expiration_picker_result_value">%1$s/%2$s</string>
-    <string name="hms_picker_set">Set HMS</string>
-    <string name="hms_picker_result_value_multiline">Hours: %1$s\nMinutes: %2$s\nSeconds: %3$s\nNegative : %4$b</string>
-    <string name="hms_picker_result_value_oneline">H:%1$s, M:%2$s, S:%3$s</string>
-    <string name="time_picker_set">Set Time</string>
-    <string name="time_picker_result_value">%1$s:%2$s</string>
-    <string name="timezone_picker_set">Set Time Zone</string>
-    <string name="recurrence_picker_set">Set Recurrence</string>
-    <string name="number_picker_set">Set Number</string>
-    <string name="number_picker_result_value">Number: %1$s\nDecimal: %2$s\nIs negative: %3$b\nFull number: %4$s</string>
-    <string name="colorprimary_text">Here is colorPrimary</string>
-    <string name="done">done</string>
+    <string name="no_value" translatable="false">--</string>
+    <string name="calendar_date_picker_set" translatable="false">Set Date</string>
+    <string name="calendar_date_picker_result_values" translatable="false">Year: %1$s\nMonth: %2$s\nDay: %3$s</string>
+    <string name="radial_time_picker" translatable="false">Set Time</string>
+    <string name="radial_time_picker_result_value" translatable="false">%1$d:%2$d</string>
+    <string name="date_picker_set" translatable="false">Set Date</string>
+    <string name="date_picker_result_value" translatable="false">Year: %1$s\nMonth: %2$s\nDay: %3$s</string>
+    <string name="expiration_picker_set" translatable="false">Set Expiration</string>
+    <string name="expiration_picker_result_value" translatable="false">%1$s/%2$s</string>
+    <string name="hms_picker_set" translatable="false">Set HMS</string>
+    <string name="hms_picker_result_value_multiline" translatable="false">Hours: %1$s\nMinutes: %2$s\nSeconds: %3$s\nNegative : %4$b</string>
+    <string name="hms_picker_result_value_oneline" translatable="false">H:%1$s, M:%2$s, S:%3$s</string>
+    <string name="time_picker_set" translatable="false">Set Time</string>
+    <string name="time_picker_result_value" translatable="false">%1$s:%2$s</string>
+    <string name="timezone_picker_set" translatable="false">Set Time Zone</string>
+    <string name="recurrence_picker_set" translatable="false">Set Recurrence</string>
+    <string name="number_picker_set" translatable="false">Set Number</string>
+    <string name="number_picker_result_value" translatable="false">Number: %1$s\nDecimal: %2$s\nIs negative: %3$b\nFull number: %4$s</string>
+    <string name="colorprimary_text" translatable="false">Here is colorPrimary</string>
+    <string name="done" translatable="false">done</string>
+    <string name="dormitory_id">dormitory_id</string>
+    <string name="nicknameEdit">Nick Name Edit</string>
+    <string name="nicknameEditInfo">input a new Nick name</string>
+    <string name="nicknameEditError">ERROR MESSAGE IF USER PUT EMPTY INPUT</string>
+    <string name="ok">ok</string>
+    <string name="SchoolEdit">School Edit</string>
+    <string name="SchoolEditInfo">input School name</string>
+    <string name="SchoolEditError">ERROR MESSAGE IF USER PUT EMPTY INPUT</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="LeaderInfo">Are you a leader?</string>
 
 
 </resources>
