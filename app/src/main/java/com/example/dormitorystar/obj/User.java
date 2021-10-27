@@ -1,4 +1,4 @@
-package com.example.dormitorystar;
+package com.example.dormitorystar.obj;
 
 import org.litepal.crud.LitePalSupport;
 

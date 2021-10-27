@@ -1,5 +1,6 @@
 package com.example.dormitorystar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -19,9 +23,12 @@ import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
 import com.eminayar.panter.DialogType;
 import com.eminayar.panter.PanterDialog;
 import com.eminayar.panter.interfaces.OnTextInputConfirmListener;
+import com.example.dormitorystar.task.UpdateOneValueTask;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 
 import org.json.JSONObject;
+
+import javax.net.ssl.SNIHostName;
 
 import adil.dev.lib.materialnumberpicker.dialog.GenderPickerDialog;
 
@@ -33,6 +40,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
     private static final String FRAG_TAG_DATE_PICKER = "fragment_date_picker_name";
 
     NavigationTabStrip navigationTabStrip ;
+    Handler handler;
 
 
     protected void initNavi(){
@@ -86,6 +94,17 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        handler=new Handler(Looper.myLooper()){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+
+
+
+
+
+            }
+        };
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_edit);
         initView();
@@ -128,6 +147,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                                             user_nick_name.setContent(textView);
 
                                             ChangeSpString("nickname",text);
+                                            UpdateOneValueTask updateOneValueTask=new UpdateOneValueTask("nickname",text,"");
+
                                         }
                                     })
                     .show();
@@ -245,13 +266,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
     }
 
 
-//    修改服务器数据,因为访问服务器获取资源现在代码有问题，所以这里就只写注释
-    String url="http://192.168.43.123:8081/JSONUpdate/dataChange.jsp";
-    protected void changeData(String url, JSONObject jsonObject){
-
-
-
-    }
 
 
 

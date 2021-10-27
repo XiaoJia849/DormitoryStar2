@@ -1,4 +1,4 @@
-package com.example.dormitorystar;
+package com.example.dormitorystar.task;
 
 import android.os.Handler;
 import android.os.Message;
@@ -20,7 +20,7 @@ public class SendUserDataTask implements Runnable{
     public static final String TAG="SendUserDataTask";
 
     Handler handler;
-    String url="http://192.168.43.123:8081/JSONUpdate/dataRegister.jsp";
+    String url="http://118.195.165.40:8080/JSONUpdate/dataRegister.jsp";
     String nickname,dormitory_id;
     int bed_id;
     boolean leader;

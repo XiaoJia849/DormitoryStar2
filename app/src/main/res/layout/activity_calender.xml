@@ -35,14 +35,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
+                style="@style/text_alibaba_calendar"
                 android:id="@+id/zeroIcon"
                 android:textSize="36sp"
-                android:textColor="@color/blue"
+                android:textColor="@color/red"
                 android:layout_width="wrap_content"
                 android:text="@string/zero"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="XYDGL"
+                android:id="@+id/zeroIconText"
+                android:text="玛卡·巴卡"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -54,14 +56,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
+                style="@style/text_alibaba_calendar"
                 android:id="@+id/threeIcon"
                 android:textSize="36sp"
-                android:textColor="@color/blue"
+                android:textColor="@color/yellow"
                 android:layout_width="wrap_content"
                 android:text="@string/three"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="XYDGL"
+                android:id="@+id/threeIconText"
+                android:text="小点点"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -72,6 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
+                style="@style/text_alibaba_calendar"
                 android:id="@+id/fourIcon"
                 android:textSize="36sp"
                 android:textColor="@color/blue"
@@ -79,7 +84,8 @@
                 android:text="@string/four"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="XYDGL"
+                android:id="@+id/fourIconText"
+                android:text="唔西·迪西"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -90,14 +96,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
+                style="@style/text_alibaba_calendar"
                 android:id="@+id/fiveIcon"
                 android:textSize="36sp"
-                android:textColor="@color/blue"
+                android:textColor="@color/green"
                 android:layout_width="wrap_content"
                 android:text="@string/five"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="XYDGL"
+                android:id="@+id/fiveIconText"
+                android:text="汤姆布利柏"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -113,8 +121,8 @@
         android:layout_height="250dp"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="#ffe95451"
-        app:compactCalendarTextColor="#fff"
+        app:compactCalendarBackgroundColor="@color/pink"
+        app:compactCalendarTextColor="@color/black"
         app:compactCalendarCurrentSelectedDayBackgroundColor="#ffbd5f5f"
         app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
         app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"

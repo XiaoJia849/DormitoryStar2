@@ -1,4 +1,4 @@
-package com.example.dormitorystar;
+package com.example.dormitorystar.task;
 
 import android.os.Handler;
 import android.os.Message;
@@ -13,7 +13,7 @@ import okhttp3.Response;
 //what=4  更新user_id的一项数据
 public class UpdateOneValueTask implements Runnable{
     Handler handler;
-    String url="http://192.168.43.123:8081/JSONUpdate/dataChange.jsp";
+    String url="http://118.195.165.40:8080/JSONUpdate/dataChange.jsp";
     String name;
     String value;
     String type;

@@ -5,37 +5,61 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
     tools:context=".LoginOrRegisterActivity">
 
-    <TextView
-        android:text="@string/nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="@string/dormitory_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/dormitory_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="@string/bed_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/bed_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            style="@style/text_login"
+            android:text="@string/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+   <LinearLayout
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <TextView
+           style="@style/text_login"
+           android:text="@string/dormitory_id"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       <EditText
+           android:id="@+id/dormitory_id"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+   </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/text_login"
+            android:text="@string/bed_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/bed_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/text_login"
             android:text="@string/leader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -60,6 +84,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            style="@style/text_login"
             android:onClick="onClick"
             android:clickable="true"
             android:id="@+id/what_you_need_to_know"

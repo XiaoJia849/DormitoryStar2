@@ -2,23 +2,25 @@ package com.example.dormitorystar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.example.dormitorystar.obj.Done;
+import com.example.dormitorystar.obj.User;
+import com.example.dormitorystar.task.GetDataDoneOneDayTask;
+import com.example.dormitorystar.task.GetDataDoneTask;
+import com.example.dormitorystar.task.SendDataDoneTask;
 import com.example.dormitorystar.utilcalendarview.CompactCalendarView;
 import com.example.dormitorystar.utilcalendarview.domain.Event;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
@@ -33,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -48,6 +49,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     public static final int GET_DATA_DONE=0;
     public static final int GET_DATA_DORM=1;
     public static final int SEND_DATA_DONE=2;
+    public static final int UPDATE_START_DATE=6;
 
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private CompactCalendarView compactCalendarView;
@@ -58,12 +60,18 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     Handler handler;
 
     TextView zeroIcon,threeIcon,fourIcon,fiveIcon;
+    TextView zeroIconText,threeIconText,fourIconText,fiveIconText;
     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
+    String startDate;
+    Gson gson=new Gson();
 
 //    室友信息
     List<Done> dones;
     List<User> users;
+
+//    记录寝室人数
+    int num;
 
 
     int type=0;
@@ -126,6 +134,8 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         fiveIcon=findViewById(R.id.fiveIcon);
 
         Typeface font = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
+
+
         zeroIcon.setTypeface(font);
         zeroIcon.setText(getResources().getString(R.string.zero));
 
@@ -138,26 +148,26 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         fiveIcon.setTypeface(font);
         fiveIcon.setText(getResources().getString(R.string.five));
 
-    }
-
-    //    获取所有室友的Done信息;
-    protected void getDoneUser(){
-        dones=LitePal.findAll(Done.class);
-    }
-
-    protected void getDormUser(){
-        users=LitePal.findAll(User.class);
-    }
-
-
-    //    用GSON 转化获得对象 保存到数据库数据
-    protected void saveDataDone(String jsonStr){
-        Gson gson=new Gson();
-        List<Done> dones= gson.fromJson(jsonStr,new TypeToken<List<Done>>(){}.getType());
-        for(Done done:dones){
-            done.save();
+        for(User user:users){
+            switch (user.getBed_id()){
+                case 1:
+                    zeroIconText.setText(user.getNickname());
+                    break;
+                case 2:
+                    threeIconText.setText(user.getNickname());
+                    break;
+                case 3:
+                    fourIconText.setText(user.getNickname());
+                    break;
+                case 4:
+                    fiveIconText.setText(user.getNickname());
+                    break;
+            }
         }
+
     }
+
+
 
 
     @Override
@@ -167,13 +177,31 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
             public void handleMessage(@NonNull Message msg) {
                 switch (msg.what){
                     case GET_DATA_DONE:
-//                        获取历史JSON关于某个人的
+//                        保存done信息到数据库
                         String strJSON= (String) msg.obj;
-                        saveDataDone(strJSON);
+                        Log.d(TAG, "handleMessage: JSON"+strJSON);
+                        List<Done> dones1= gson.fromJson(strJSON,new TypeToken<List<Done>>(){}.getType());
+                        for(Done done:dones1){
+                            done.save();
+                        }
+
+                        num--;
+                        if(num==0){
+                            //        根据Done绘制events
+                            Log.d(TAG, "handleMessage: 根据Done 绘制图");
+                            try {
+                                createDoneEvents();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
                         break;
                     case SEND_DATA_DONE:
-//                        啥也不做
                         break;
+
+                    case UPDATE_START_DATE:
+                        startDate= (String) msg.obj;
                 }
 
 
@@ -185,17 +213,18 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calender);
 
-
+//        获取室友个人信息
+        users=LitePal.findAll(User.class);
         initNavi();
         initView();
         initCalendar();
-        getDoneUser();
 
+//        获取室友+自己done 历史所有信息
+        getDataFromUrl();
 
 
         SharedPreferences sharedPreferences=getSharedPreferences("User",Activity.MODE_PRIVATE);
-        sharedPreferences.getInt("type",1);
-
+        type=sharedPreferences.getInt("type",1);
         if(type==1){
             Plan1();
         }
@@ -206,8 +235,6 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 e.printStackTrace();
             }
         }
-
-        //        展示以前的历史
 
 
 
@@ -366,9 +393,9 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
             public void run() {
 //                向服务器发送请求获取今天的数据
             for(User user:users){
-                GetDataDoneOneDay getDataDoneOneDay=new GetDataDoneOneDay(user.getUser_id(),date);
-                getDataDoneOneDay.setHandler(handler);
-                Thread thread=new Thread(getDataDoneOneDay);
+                GetDataDoneOneDayTask getDataDoneOneDayTask =new GetDataDoneOneDayTask(user.getUser_id(),date);
+                getDataDoneOneDayTask.setHandler(handler);
+                Thread thread=new Thread(getDataDoneOneDayTask);
                 thread.start();
             }
 
@@ -379,46 +406,54 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
 
 
 //    从服务器获取 一个寝室所有同学的 json Str 关于是否做了值日的历史数据。是所有的历史数据
-    protected String getDataFromUrl(){
-
-        for(User user:users){
-            GetDataDoneTask getDataDoneTask=new GetDataDoneTask(user.getUser_id());
+    protected void getDataFromUrl(){
+        num=2;
+//        for(User user:users){
+//            GetDataDoneTask getDataDoneTask=new GetDataDoneTask(user.getUser_id());
+//            getDataDoneTask.setHandler(handler);
+//            Thread thread=new Thread(getDataDoneTask);
+//            thread.start();
+//        }
+//        做个测试
+        String []userS={"000001","000002"};
+        for(String s:userS){
+            GetDataDoneTask getDataDoneTask=new GetDataDoneTask(s);
             getDataDoneTask.setHandler(handler);
             Thread thread=new Thread(getDataDoneTask);
             thread.start();
         }
 
-        return "";
+
     }
 
 //  从数据库找到日期在这个月第一天之后的数据。
     protected List<Done> findDonesAfterFirstDayOfMonth(){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-
         currentCalender.setTime(new Date());
+        currentCalender.set(Calendar.DAY_OF_MONTH, 1);
         Date firstDayOfMonth = currentCalender.getTime();
-        List<Done> dones=LitePal.where("date(date) between date(?)and date(?)",firstDayOfMonth.toString(),new Date().toString()).find(Done.class);
+
+        List<Done> dones=LitePal.where("date between ? and ?",sdf.format(firstDayOfMonth),sdf.format(new Date())).find(Done.class);
+
         return dones;
     }
 
 
 //    遍历这些数据制作Events
     protected void createDoneEvents() throws ParseException {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-
         List<Done> dones= findDonesAfterFirstDayOfMonth();
+        List<Event> events=new ArrayList<>();
         for(Done done:dones){
             currentCalender.setTime(sdf.parse(done.getDate()));
             setToMidnight(currentCalender);
             long timeInMillis = currentCalender.getTimeInMillis();
-            List<Event> events=new ArrayList<>();
 
+            Log.d(TAG, "createDoneEvents: "+done.getDate()+""+done.isDone());
             Event event=new Event(Color.argb(255, 169, 68, 65), timeInMillis, "没啥可以说的");
             event.setBed_id(done.getBed_id());
             event.setHasDone(done.isDone());
-            events=Arrays.asList(event);
-            compactCalendarView.addEvents(events);
+            events.add(event);
         }
+        compactCalendarView.addEvents(events);
     }
 
 
@@ -451,6 +486,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
 
 
 //        把服务器数据修改，并且提交今天的日期
+        Log.d(TAG, "onClick: "+date);
         SendDataDoneTask sendDataDoneTask=new SendDataDoneTask(user_id,date,bed_id,true);
         sendDataDoneTask.setHandler(handler);
         Thread thread=new Thread(sendDataDoneTask);

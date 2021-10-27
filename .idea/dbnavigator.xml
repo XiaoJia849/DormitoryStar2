@@ -24,15 +24,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="a9ed842a-ca15-48e2-b336-9074d4d95793">
-        <schema name="main" object-types="table, view, constraint, index, column, dataset trigger" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a9ed842a-ca15-48e2-b336-9074d4d95793">
-      <console name="Dorm" type="STANDARD" schema="main" session="Main"><![CDATA[select * from user;]]></console>
+      <console name="Dorm" type="STANDARD" schema="main" session="Main"><![CDATA[select * from done  where date between "2021-10-03" and "2021-10-26";]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -41,8 +37,14 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a9ed842a-ca15-48e2-b336-9074d4d95793" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="a9ed842a-ca15-48e2-b336-9074d4d95793" dataset="main.done" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a9ed842a-ca15-48e2-b336-9074d4d95793" dataset="main.user" active-filter-id="EMPTY_FILTER" />
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
-    <last-used-providers />
+    <last-used-providers>
+      <object-type object-type="TABLE" editor-provider="DATA" />
+    </last-used-providers>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -112,7 +114,7 @@
           <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="false" />
-          <connect-automatically value="true" />
+          <connect-automatically value="false" />
           <restore-workspace value="true" />
           <restore-workspace-deep value="true" />
           <environment-type value="default" />

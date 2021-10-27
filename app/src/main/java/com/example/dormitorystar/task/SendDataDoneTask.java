@@ -1,4 +1,4 @@
-package com.example.dormitorystar;
+package com.example.dormitorystar.task;
 
 import android.os.Handler;
 import android.os.Message;
@@ -16,7 +16,7 @@ public class SendDataDoneTask implements Runnable{
     String user_id,date;
     int bed_id;
     boolean done;
-    String url="http://192.168.43.123:8081/JSONUpdate/dataDoneCreate.jsp";
+    String url="http://118.195.165.40:8080/JSONUpdate/dataDoneCreate.jsp";
     public static final String TAG="SendDataDoneTask";
 
     public void setHandler(Handler handler) {

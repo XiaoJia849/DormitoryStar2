@@ -15,27 +15,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONException;
-import com.alibaba.fastjson.JSONObject;
+import com.example.dormitorystar.obj.User;
+import com.example.dormitorystar.task.GetDataDoneTask;
+import com.example.dormitorystar.task.GetDataDormTask;
+import com.example.dormitorystar.task.SendUserDataTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 
-import org.jsoup.Jsoup;
 import org.litepal.LitePal;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class LoginOrRegisterActivity extends AppCompatActivity implements View.OnClickListener {
     EditText nickname,dormitory_id,bed_id;
@@ -48,8 +41,8 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
     Boolean Bool_leader;
     public static final String TAG="LoginOrRegisterActivity";
     Handler handler;
-    public static final int GET_DATA_DORM=1;
-    public static final int SEND_USER_DATA=3;
+    public static final int GET_DATA_DORM = 1;
+    public static final int SEND_USER_DATA = 3;
 
 
     @Override
@@ -64,8 +57,6 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
 
                     Intent intent=new Intent(LoginOrRegisterActivity.this,CalenderActivity.class);
                     startActivity(intent);
-
-
                 }
                 if(msg.what==SEND_USER_DATA){
                     Str_user_id= (String) msg.obj;
@@ -77,8 +68,6 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
 
             }
         };
-
-
 
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences=getSharedPreferences("User", Activity.MODE_PRIVATE);
@@ -108,15 +97,14 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
     }
 
 
-    //    解析JSON,保存室友信息到数据库,将之前的用户数据删除
+    //    解析JSON,保存室友+自己 信息到数据库,将之前的用户数据删除
     protected void parseJSONAndSaveData(String json){
+        Log.d(TAG, "parseJSONAndSaveData:获取的JSON+"+json);
         Gson gson=new Gson();
         LitePal.deleteAll(User.class);
         List<User> users= gson.fromJson(json,new TypeToken<List<User>>(){}.getType());
         for(User user:users){
-            if(user.getUser_id().equals(Str_user_id)){
-                continue;
-            }
+            Log.d(TAG, "parseJSONAndSaveData: 室友数据+"+user.getNickname());
             user.save();
         }
     }
@@ -147,18 +135,20 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
             Bool_leader=leader.isChecked();
 
 
-            SendUserDataTask task=new SendUserDataTask(Str_nickname,Str_dormitory_id,Int_bed_id,Bool_leader
+            SendUserDataTask sendUserDataTask=new SendUserDataTask(Str_nickname,Str_dormitory_id,Int_bed_id,Bool_leader
             );
-            task.setHandler(handler);
-            Thread thread1=new Thread(task);
+            sendUserDataTask.setHandler(handler);
+            Thread thread1=new Thread(sendUserDataTask);
             thread1.start();
 
 
-            GetDataDormTask task1=new GetDataDormTask();
-            task1.setHandler(handler);
-            task1.setDormitory_id(Str_dormitory_id);
-            Thread thread2=new Thread(task);
+            GetDataDormTask getDataDormTask=new GetDataDormTask();
+            getDataDormTask.setHandler(handler);
+            getDataDormTask.setDormitory_id(Str_dormitory_id);
+            Thread thread2=new Thread(getDataDormTask);
             thread2.start();
+
+
 
 
 

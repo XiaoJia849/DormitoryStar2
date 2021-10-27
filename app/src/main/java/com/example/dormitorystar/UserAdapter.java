@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.dormitorystar.obj.User;
+
 import java.util.List;
 
 public class UserAdapter extends ArrayAdapter<User> {

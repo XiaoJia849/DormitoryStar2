@@ -19,4 +19,20 @@
         <item name="bpButtonsBackgroundColor">@color/darkcyan</item>
         <item name="bpButtonsTextColor">@color/white</item>
     </style>
+
+
+    <style name="text_login" >
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text_calendar">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="text_alibaba_calendar">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
 </resources>

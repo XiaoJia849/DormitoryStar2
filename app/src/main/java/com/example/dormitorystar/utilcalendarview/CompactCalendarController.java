@@ -894,24 +894,28 @@ public class CompactCalendarController {
         for(Event event:eventsList){
             if(event.isHasDone()) {
                 dayPaint.setStyle(Paint.Style.FILL);
-                dayPaint.setColor(Color.argb(255, 169, 68, 65));
+//                dayPaint.setColor(Color.argb(255, 169, 68, 65));
             }else {
                 dayPaint.setStyle(Paint.Style.STROKE);
                 dayPaint.setStrokeWidth(strokeWidth);
-                dayPaint.setColor(Color.argb(255, 169, 68, 65));
+//                dayPaint.setColor(Color.argb(255, 169, 68, 65));
 
             }
             switch (event.getBed_id()){
                 case  1:
+                    dayPaint.setColor(Color.argb(128,255,0,0));
                     drawZero(canvas,xPosition,yPosition);
                     break;
                 case 2:
+                    dayPaint.setColor(Color.argb(128,255,255,0));
                     drawThree(canvas,xPosition,yPosition);
                     break;
                 case 3:
+                    dayPaint.setColor(Color.argb(128,0,0,255));
                     drawFour(canvas,xPosition,yPosition);
                     break;
                 case 4:
+                    dayPaint.setColor(Color.argb(128,0,255,0));
                     drawFive(canvas,xPosition,yPosition);
                     break;
             }

@@ -1,4 +1,4 @@
-package com.example.dormitorystar;
+package com.example.dormitorystar.task;
 
 
 import android.os.Message;
@@ -7,21 +7,22 @@ import org.jsoup.Jsoup;
 
 import java.io.IOException;
 import android.os.Handler;
-import android.os.Message;
+
+import com.example.dormitorystar.obj.Done;
 
 //what=5 获取某一天的user_id的done的数据
 //返回数据bed_id不要获取
-public class GetDataDoneOneDay implements Runnable{
+public class GetDataDoneOneDayTask implements Runnable{
     Handler handler;
     String user_id,date;
-    public static final String TAG="GetDataDoneOneDay";
-    String url="http://192.168.43.123:8081/JSONUpdate/dataDoneDate.jsp";
+    public static final String TAG="GetDataDoneOneDayTask";
+    String url="http://118.195.165.40:8080/JSONUpdate/dataDoneDate.jsp";
 
     public void setHandler(Handler handler) {
         this.handler = handler;
     }
 
-    public GetDataDoneOneDay(String user_id, String date) {
+    public GetDataDoneOneDayTask(String user_id, String date) {
         this.user_id = user_id;
         this.date = date;
     }
