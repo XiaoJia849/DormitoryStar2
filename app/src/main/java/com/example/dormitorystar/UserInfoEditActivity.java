@@ -22,11 +22,14 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
 import com.eminayar.panter.DialogType;
 import com.eminayar.panter.PanterDialog;
+import com.eminayar.panter.enums.Animation;
 import com.eminayar.panter.interfaces.OnTextInputConfirmListener;
+import com.example.dormitorystar.obj.User;
 import com.example.dormitorystar.task.UpdateOneValueTask;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 
 import org.json.JSONObject;
+import org.litepal.LitePal;
 
 import javax.net.ssl.SNIHostName;
 
@@ -44,7 +47,10 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
     NavigationTabStrip navigationTabStrip ;
     Handler handler;
     String Str_user_id="";
+//    记录今天轮到哪位值日
+    int turn_id=0;
 
+    User user=new User();
 
     protected void initNavi(){
         navigationTabStrip= findViewById(R.id.navi_user);
@@ -80,7 +86,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
 //                    跳转到calendar页面
                     Intent intent=new Intent(UserInfoEditActivity.this,CalenderActivity.class);
                     startActivity(intent);
-
+                    finish();
                 }
             }
         });
@@ -95,7 +101,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                 switch (msg.what){
                     case UPDATE_ONE_VALUE:
                         String str= (String) msg.obj;
-                        Toast.makeText(UserInfoEditActivity.this,str,Toast.LENGTH_LONG).show();
+//                        Toast.makeText(UserInfoEditActivity.this,str,Toast.LENGTH_LONG).show();
 
                         break;
 
@@ -123,6 +129,19 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         Boolean bool_leader=sharedPreferences.getBoolean("leader",false);
         Boolean bool_gender=sharedPreferences.getBoolean("gender",true);
         int int_type=sharedPreferences.getInt("type",1);
+        String Str_dormitory_id=sharedPreferences.getString("dormitory_id","");
+        int int_bed_id=sharedPreferences.getInt("bed_id",1);
+
+        user.setDormitory_id(Str_dormitory_id);
+        user.setUser_id(Str_user_id);
+        user.setUser_pic("");
+        user.setBirthday(Str_birthday);
+        user.setGender(bool_gender);
+        user.setLeader(bool_leader);
+        user.setType(int_type);
+        user.setNickname(Str_nickname);
+        user.setSchool(Str_school);
+        user.setBed_id(int_bed_id);
 
 
 
@@ -140,8 +159,17 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         initIntem(user_school,Str_school);
         initIntem(user_nick_name,Str_nickname);
         initIntem(user_id,Str_user_id);
-        initIntem(user_gender,bool_gender);
-        initIntem(user_leader,bool_leader);
+        if(bool_gender){
+            initIntem(user_gender,getResources().getString(R.string.MPD_female));
+        }else {
+            initIntem(user_gender,getResources().getString(R.string.MPD_male));
+
+        }
+        if(bool_leader){
+            initIntem(user_leader,getResources().getString(R.string.yes));
+        }else {
+            initIntem(user_leader,getResources().getString(R.string.no));
+        }
         initIntem(user_type,int_type);
     }
 
@@ -162,7 +190,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
 
 
 
-//    需要补充点击图片更换头像
 
 
 
@@ -185,7 +212,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                                             user_nick_name.setContent(textView);
 
                                             ChangeSpString("nickname",text);
-
+                                            user.setNickname(text);
+                                            user.updateAll("user_id = ?",user.getUser_id());
                                             sendUpdateOneValue("nickname",text,"String",Str_user_id);
 
                                         }
@@ -200,17 +228,17 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                 @Override
                 public void onSelectingGender(String value) {
                     if(!value.equals(getResources().getString(R.string.MPD_male))){
-                        TextView textView=user_gender.getContent();
-                        textView.setText(getResources().getString(R.string.MPD_female));
-                        user_gender.setContent(textView);
-
+                        initIntem(user_gender,getResources().getString(R.string.MPD_female));
                         ChangeSpBool("gender",true);
-
+                        user.setGender(true);
+                        user.updateAll("user_id = ?",user.getUser_id());
                         sendUpdateOneValue("gender","true","Boolean",Str_user_id);
 
                     }else {
+                        initIntem(user_gender,getResources().getString(R.string.MPD_male));
                         ChangeSpBool("gender",false);
-
+                        user.setGender(false);
+                        user.updateAll("user_id = ?",user.getUser_id());
                         sendUpdateOneValue("gender","false","Boolean",Str_user_id);
                     }
                 }
@@ -230,7 +258,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                     .setHeaderBackground(R.drawable.pattern_bg_blue)
                     .setDialogType(DialogType.INPUT)
                     .setTitle(getResources().getString(R.string.SchoolEdit))
-                    .isCancelable(false)
+                    .isCancelable(true)
                     .input(getResources().getString(R.string.SchoolEditInfo),
                             getResources().getString(R.string.SchoolEditError), new
                                     OnTextInputConfirmListener() {
@@ -241,7 +269,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                                             user_school.setContent(textView);
 
                                             ChangeSpString("school",text);
-
+                                            user.setSchool(text);
+                                            user.updateAll("user_id = ?",user.getUser_id());
                                             sendUpdateOneValue("school",text,"String",Str_user_id);
 
                                         }
@@ -257,6 +286,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                         public void onClick(View v) {
 
                             ChangeSpBool("leader",true);
+                            initIntem(user_leader,getResources().getString(R.string.yes));
+                            user.setLeader(true);
+                            user.updateAll("user_id = ?",user.getUser_id());
                             sendUpdateOneValue("leader","true","Boolean",Str_user_id);
 
                         }
@@ -264,11 +296,14 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
                     .setNegative(getResources().getString(R.string.no), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            initIntem(user_leader,getResources().getString(R.string.no));
                             ChangeSpBool("leader",false);
+                            user.setLeader(false);
+                            user.updateAll("user_id = ?",user.getUser_id());
                             sendUpdateOneValue("leader","true","Boolean",Str_user_id);
-
                         }
                     })
+                    .withAnimation(Animation.POP)
                     .setMessage(getResources().getString(R.string.LeaderInfo))
                     .isCancelable(true)
                     .show();
@@ -289,15 +324,19 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
 
-        Toast.makeText(UserInfoEditActivity.this,getString(R.string.calendar_date_picker_result_values, year, monthOfYear, dayOfMonth),Toast.LENGTH_LONG).show();
-        TextView textView=user_birthday.getContent();
+//        Toast.makeText(UserInfoEditActivity.this,getString(R.string.calendar_date_picker_result_values, year, monthOfYear, dayOfMonth),Toast.LENGTH_LONG).show();
+        monthOfYear+=1;
         String month=monthOfYear<10?"0"+monthOfYear:""+monthOfYear;
         String day=dayOfMonth<10?"0"+dayOfMonth:""+dayOfMonth;
-        textView.setText(""+year+"-"+month+"-"+day);
-        user_birthday.setContent(textView);
 
-        ChangeSpString("birthday",""+year+"-"+month+"-"+day);
-        sendUpdateOneValue("birthday",""+year+"-"+month+"-"+day,"String",Str_user_id);
+        String bbb=""+year+"-"+month+"-"+day;
+        initIntem(user_birthday,bbb);
+
+        user.setNickname(bbb);
+        user.updateAll("user_id = ?",user.getUser_id());
+
+        ChangeSpString("birthday",bbb);
+        sendUpdateOneValue("birthday",bbb,"String",Str_user_id);
 
     }
 

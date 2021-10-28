@@ -10,6 +10,10 @@ public class Event {
     private int bed_id;
     private boolean hasDone;
 
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     public boolean isHasDone() {
         return hasDone;
     }

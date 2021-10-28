@@ -24,4 +24,20 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="LeaderInfo">请问你是寝室长吗？</string>
+    <string name="select_plan">选择方案</string>
+    <string name="plan1">方案1</string>
+    <string name="plan2">方案2</string>
+    <string name="plan1Content">周一1号床值日，周三2号床值日，周五3号床值日，周末4号床值日</string>
+    <string name="create_one">创建新方案</string>
+    <string name="make_sure">提交</string>
+    <string name="MPD_action_done">确定</string>
+    <string name="MPD_action_cancel">取消</string>
+    <string name="done">完成</string>
+    <string name="Mon">周一</string>
+    <string name="Tue">周二</string>
+    <string name="Wen">周三</string>
+    <string name="Thu">周四</string>
+    <string name="Fri">周五</string>
+    <string name="Sat">周六</string>
+    <string name="Sun">周日</string>
 </resources>

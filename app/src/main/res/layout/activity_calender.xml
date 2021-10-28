@@ -48,6 +48,13 @@
                 android:text="玛卡·巴卡"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/flowerzero"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:text="@string/flower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
@@ -68,6 +75,13 @@
             <TextView
                 android:id="@+id/threeIconText"
                 android:text="小点点"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/flowerthree"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:text="@string/flower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -99,6 +113,13 @@
                 android:text="唔西·迪西"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/flowerfour"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:text="@string/flower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
@@ -117,6 +138,13 @@
             <TextView
                 android:id="@+id/fiveIconText"
                 android:text="汤姆布利柏"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/flowerfive"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:text="@string/flower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

@@ -1,5 +1,7 @@
 package com.example.dormitorystar.obj;
 
+import android.widget.EditText;
+
 import org.litepal.crud.LitePalSupport;
 
 import java.util.Date;
@@ -12,6 +14,11 @@ public class User extends LitePalSupport {
     String user_pic;
     int type,bed_id;
     boolean leader;
+
+    public User() {
+
+    }
+
 
     public int getType() {
         return type;

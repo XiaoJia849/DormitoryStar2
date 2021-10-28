@@ -61,6 +61,11 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
                     Str_user_id= (String) msg.obj;
                     SharedPreferences sharedPreferences=getSharedPreferences("User",Activity.MODE_PRIVATE);
                     SharedPreferences.Editor editor=sharedPreferences.edit();
+                    List<User> users=LitePal.where("user_id = ?",Str_user_id).find(User.class);
+                    if(users==null){
+                        User user=new User(Str_nickname,Int_bed_id,Str_dormitory_id,Str_user_id);
+                        user.save();
+                    }
                     editor.putString("user_id",Str_user_id);
                     editor.apply();
                     Log.d(TAG, "handleMessage: 获取新用户的用户ID"+Str_user_id);
@@ -75,6 +80,7 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
         Log.d(TAG, "onCreate: USER_ID"+Str_user_id);
         if(!Str_user_id.equals("")){
 //            登录,直接看卫生日历
+            Log.d(TAG, "onCreate: ");
             Intent intent=new Intent(LoginOrRegisterActivity.this,CalenderActivity.class);
             startActivity(intent);
 
@@ -86,8 +92,6 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
 
             setContentView(R.layout.activity_login_or_register);
             initView();
-
-
 
         }
 
@@ -155,8 +159,6 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
 
 
 
-
-
 //            将user_id,等等信息用sharePreference存储
                 SharedPreferences sharedPreferences=getSharedPreferences("User",Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -170,8 +172,8 @@ public class LoginOrRegisterActivity extends AppCompatActivity implements View.O
                 editor.apply();
 
 //            跳转到下一个页面
-//            Intent intent=new Intent(LoginOrRegisterActivity.this,CalenderActivity.class);
-//            startActivity(intent);
+            Intent intent=new Intent(LoginOrRegisterActivity.this,CalenderActivity.class);
+            startActivity(intent);
 
             }
 

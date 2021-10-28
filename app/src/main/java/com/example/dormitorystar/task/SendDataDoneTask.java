@@ -33,13 +33,14 @@ public class SendDataDoneTask implements Runnable{
     @Override
     public void run() {
         String new_url=url+"?user_id="+user_id+"&date="+date+
-                "&bed_id="+bed_id+"&done="+done;
+                "&bed_id="+bed_id+"";
         OkHttpClient client=new OkHttpClient();
         Request request=new Request.Builder().get().url(new_url).addHeader("Content-Type", "application/json; charset=gb2312").build();
         String user_id="";
         try {
             Response response=client.newCall(request).execute();
             if(response.isSuccessful()){
+                Log.d(TAG, "run: 发送成功");
                 Message message=handler.obtainMessage(2);
                 message.obj=user_id;
                 handler.sendMessage(message);

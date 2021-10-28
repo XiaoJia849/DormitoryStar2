@@ -829,13 +829,15 @@ public class CompactCalendarController {
                             yPosition += indicatorOffset;
                         }
 
-                        if (eventsList.size() >= 3) {
-                            drawEventsWithPlus(canvas, xPosition, yPosition, eventsList);
-                        } else if (eventsList.size() == 2) {
-                            drawTwoEvents(canvas, xPosition, yPosition, eventsList);
-                        } else if (eventsList.size() == 1) {
-                            drawSingleEvent(canvas, xPosition, yPosition, eventsList);
-                        }
+
+//                        在日期下面画点
+//                        if (eventsList.size() >= 3) {
+//                            drawEventsWithPlus(canvas, xPosition, yPosition, eventsList);
+//                        } else if (eventsList.size() == 2) {
+//                            drawTwoEvents(canvas, xPosition, yPosition, eventsList);
+//                        } else if (eventsList.size() == 1) {
+//                            drawSingleEvent(canvas, xPosition, yPosition, eventsList);
+//                        }
 
 
 
@@ -866,10 +868,10 @@ public class CompactCalendarController {
 
     private void drawThree(Canvas canvas,float xPosition,float yPosition){
         Path path=new Path();
-        path.moveTo(xPosition-threeRadius,yPosition);
+        path.moveTo(xPosition-threeRadius,yPosition+threeRadius);
+        path.lineTo(xPosition,yPosition-threeRadius);
         path.lineTo(xPosition+threeRadius,yPosition+threeRadius);
-        path.lineTo(xPosition+threeRadius,yPosition-threeRadius);
-        path.lineTo(xPosition-threeRadius,yPosition);
+        path.lineTo(xPosition-threeRadius,yPosition+threeRadius);
         path.close();
         canvas.drawPath(path,dayPaint);
     }
@@ -903,19 +905,19 @@ public class CompactCalendarController {
             }
             switch (event.getBed_id()){
                 case  1:
-                    dayPaint.setColor(Color.argb(128,255,0,0));
+                    dayPaint.setColor(event.getColor());
                     drawZero(canvas,xPosition,yPosition);
                     break;
                 case 2:
-                    dayPaint.setColor(Color.argb(128,255,215,0));
+                    dayPaint.setColor(event.getColor());
                     drawThree(canvas,xPosition,yPosition);
                     break;
                 case 3:
-                    dayPaint.setColor(Color.argb(128,0,0,255));
+                    dayPaint.setColor(event.getColor());
                     drawFour(canvas,xPosition,yPosition);
                     break;
                 case 4:
-                    dayPaint.setColor(Color.argb(128,0,128,0));
+                    dayPaint.setColor(event.getColor());
                     drawFive(canvas,xPosition,yPosition);
                     break;
             }

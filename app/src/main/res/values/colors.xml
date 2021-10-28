@@ -160,13 +160,13 @@
 
 
 <!--重写性别选择器的颜色-->
-    <color name="MPD_primaryColor">@color/primaryColor</color>
+    <color name="MPD_primaryColor">@color/cornflowerblue</color>
     <color name="MPD_primaryColorLight">#C5CAE9</color>
     <color name="MPD_backGroundColor">#FFF</color>
-    <color name="MPD_pickerItemColorUnSelected">#00FFFFFF</color>
+    <color name="MPD_pickerItemColorUnSelected">#00FFFF</color>
     <color name="MPD_pickerItemColorSelected">@color/MPD_primaryColor</color>
     <color name="MPD_pickerItemTextColorUnSelected">#444</color>
-    <color name="MPD_pickerItemTextColorSelected">#bbffffff</color>
+    <color name="MPD_pickerItemTextColorSelected">#bbffff</color>
     <color name="MPD_pickerSelectedTextColor">#FFF</color>
 
 

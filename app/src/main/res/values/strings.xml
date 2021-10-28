@@ -6,11 +6,11 @@
     <string name="register">register</string>
     <string name="normal" translatable="false">normal</string>
     <string name="elect" translatable="false">elect</string>
-    <string name="select_plan" translatable="false">select plan</string>
-    <string name="plan1" translatable="false">plan1</string>
-    <string name="create_one" translatable="false">create_one</string>
+    <string name="select_plan">select plan</string>
+    <string name="plan1">plan1</string>
+    <string name="create_one">create_one</string>
     <string name="commit" translatable="false">commit</string>
-    <string name="make_sure" translatable="false">make_sure</string>
+    <string name="make_sure">make_sure</string>
 
     <string name="zero" translatable="false">&#xe612;</string>
     <string name="three" translatable="false">&#xe652;</string>
@@ -39,8 +39,8 @@
 
     <!--    重写性别选择器的文字提示-->
 
-    <string name="MPD_action_done" translatable="false">done</string>
-    <string name="MPD_action_cancel" translatable="false">cancel</string>
+    <string name="MPD_action_done">done</string>
+    <string name="MPD_action_cancel">cancel</string>
     <string name="MPD_male">Male</string>
     <string name="MPD_female">Female</string>
     <string name="MPD_empty_message" translatable="false">value can not be empty</string>
@@ -68,7 +68,7 @@
     <string name="number_picker_set" translatable="false">Set Number</string>
     <string name="number_picker_result_value" translatable="false">Number: %1$s\nDecimal: %2$s\nIs negative: %3$b\nFull number: %4$s</string>
     <string name="colorprimary_text" translatable="false">Here is colorPrimary</string>
-    <string name="done" translatable="false">done</string>
+    <string name="done">done</string>
     <string name="dormitory_id">dormitory_id</string>
     <string name="nicknameEdit">Nick Name Edit</string>
     <string name="nicknameEditInfo">input a new Nick name</string>
@@ -80,6 +80,18 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="LeaderInfo">Are you a leader?</string>
+    <string name="plan2">plan2</string>
+    <string name="plan1Content">default  bed number in 1,2,3,4 do sweeping in Mon The Fri Sun</string>
 
 
+    <string name="flower" translatable="false">&#xe699;</string>
+    <string name="flower1" translatable="false">&#xe6e2;</string>
+    <string name="pleaseFill" translatable="false">please fill the edittext</string>
+    <string name="Mon">Mon</string>
+    <string name="Tue">Tue</string>
+    <string name="Wen">Wen</string>
+    <string name="Thu">Thu</string>
+    <string name="Fri">Fri</string>
+    <string name="Sat">Sat</string>
+    <string name="Sun">Sun</string>
 </resources>

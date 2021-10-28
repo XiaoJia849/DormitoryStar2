@@ -9,6 +9,8 @@ import com.alibaba.fastjson.JSONObject;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 
 import okhttp3.OkHttpClient;
@@ -38,9 +40,11 @@ public class SendUserDataTask implements Runnable{
 
     @Override
     public void run() {
+
         String new_url=url+"?nickname="+nickname+"&dormitory_id="+dormitory_id+
                 "&bed_id="+bed_id+"&leader="+leader;
         OkHttpClient client=new OkHttpClient();
+        Log.d(TAG, "run: new_url"+new_url);
         Request request=new Request.Builder().get().url(new_url).addHeader("Content-Type", "application/json; charset=gb2312").build();
         String user_id="";
         try {
