@@ -857,10 +857,6 @@ public class CompactCalendarController {
     private static float fourRadius=30f;
 
     private static int  fiveRadius_big=70;
-
-
-
-    private static final String TAG="WWWW";
     private static final float strokeWidth=2f;
     private void drawZero(Canvas canvas,float xPosition,float yPosition){
         canvas.drawCircle(xPosition, yPosition, zeroCircleRadius, dayPaint);

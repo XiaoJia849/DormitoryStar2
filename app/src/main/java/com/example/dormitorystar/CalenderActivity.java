@@ -149,8 +149,6 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 getResources().getString(R.string.Sun)
         };
         compactCalendarView.setDayColumnNames(week);
-
-
     }
 
     protected void initView() {
@@ -176,7 +174,6 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
 
 
         Typeface font = Typeface.createFromAsset(getAssets(), "iconfont.ttf");
-
         zeroIcon.setTypeface(font);
         zeroIcon.setText(getResources().getString(R.string.zero));
 
@@ -386,14 +383,12 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     protected void Plan2(String dateStart, int dateBwteen) throws ParseException {
 //        获取那一天到今天的距离
         Date dateS = sdf.parse(dateStart);
-
         currentCalender.setTime(new Date());
         currentCalender.set(Calendar.DAY_OF_MONTH, 1);
         Date firstDayOfMonth = currentCalender.getTime();
         Date dateF = sdf.parse(sdf.format(firstDayOfMonth));
         long day = (dateF.getTime() - dateS.getTime()) / 24 / 60 / 60 / 1000;
         int netday = (int) (day % (dateBwteen * 4));
-
         int max_day_of_month = currentCalender.getActualMaximum(Calendar.DAY_OF_MONTH);    //max_day_of_month=31
 
         for (int i = 0; i < max_day_of_month; i++) {
@@ -479,7 +474,6 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 default:
                     break;
             }
-
             compactCalendarView.addEvents(events);
         }
 

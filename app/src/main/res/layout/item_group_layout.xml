@@ -16,14 +16,12 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/title"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textSize="13sp" />
-
         <TextView
             android:id="@+id/content"
             android:layout_width="0dp"
@@ -33,8 +31,6 @@
             android:background="@null"
             android:singleLine="true"
             android:textSize="13sp" />
-
-
         <!--点击跳转或者弹出选择框-->
         <ImageView
             android:id="@+id/right"
@@ -46,7 +42,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/right" />
     </LinearLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

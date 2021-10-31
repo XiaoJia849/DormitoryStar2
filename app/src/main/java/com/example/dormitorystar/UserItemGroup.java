@@ -24,7 +24,6 @@ public class UserItemGroup extends FrameLayout {
     private Context context;
 
 
-
     public UserItemGroup(@NonNull Context context) {
         super(context);
     }
