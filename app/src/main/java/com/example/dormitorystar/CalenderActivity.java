@@ -181,7 +181,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         threeIcon.setText(getResources().getString(R.string.three));
 
         fourIcon.setTypeface(font);
-        fourIcon.setText(getResources().getString(R.string.four_fill));
+        fourIcon.setText(getResources().getString(R.string.four));
 
         fiveIcon.setTypeface(font);
         fiveIcon.setText(getResources().getString(R.string.five));
@@ -321,6 +321,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         Date dateF = new Date();
         long day = (dateF.getTime() - dateS.getTime()) / 24 / 60 / 60 / 1000;
         int netday = (int) (day % (dateBetween * 4));
+        Log.d(TAG, "getBed_idNeedDonePlan2: 根据PLAN2判断，今天应该是"+netday);
         if(netday==0){
             return 1;
         }else if(netday==dateBetween){

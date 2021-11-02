@@ -332,7 +332,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements  View.OnC
         String bbb=""+year+"-"+month+"-"+day;
         initIntem(user_birthday,bbb);
 
-        user.setNickname(bbb);
+        user.setBirthday(bbb);
         user.updateAll("user_id = ?",user.getUser_id());
 
         ChangeSpString("birthday",bbb);
